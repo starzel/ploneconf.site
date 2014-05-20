@@ -1,23 +1,35 @@
 <configure
-    xmlns="http://namespaces.zope.org/zope"
-    xmlns:browser="http://namespaces.zope.org/browser"
-    i18n_domain="ploneconf.site">
+  xmlns="http://namespaces.zope.org/zope"
+  xmlns:browser="http://namespaces.zope.org/browser"
+  i18n_domain="ploneconf.site">
 
-    <browser:page
-       name="demoview"
-       for="*"
-       class=".views.DemoView"
-       template="templates/demoview.pt"
-       permission="zope2.View"
-       />
+  <include package="z3c.jbot" file="meta.zcml" />
+  <browser:jbot directory="template_overrides" />
 
-    <browser:page
-       name="talkview"
-       for="*"
-       layer="zope.interface.Interface"
-       class=".views.TalkView"
-       template="templates/talkview.pt"
-       permission="zope2.View"
-       />
+  <browser:page
+    name="demoview"
+    for="*"
+    class=".views.DemoView"
+    template="templates/demoview.pt"
+    permission="zope2.View"
+    />
+
+  <browser:page
+    name="talkview"
+    for="*"
+    layer="*"
+    class=".views.TalkView"
+    template="templates/talkview.pt"
+    permission="zope2.View"
+    />
+
+  <browser:page
+    name="talklistview"
+    for="*"
+    layer="*"
+    class=".views.TalkListView"
+    template="templates/talklistview.pt"
+    permission="zope2.View"
+    />
 
 </configure>
