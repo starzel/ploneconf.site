@@ -9,6 +9,7 @@
   <browser:page
     name="demoview"
     for="*"
+    layer="..interfaces.IPloneconfSiteLayer"
     class=".views.DemoView"
     template="templates/demoview.pt"
     permission="zope2.View"
@@ -16,8 +17,8 @@
 
   <browser:page
     name="talkview"
-    for="*"
-    layer="*"
+    for="ploneconf.site.interfaces.ITalk"
+    layer="..interfaces.IPloneconfSiteLayer"
     class=".views.TalkView"
     template="templates/talkview.pt"
     permission="zope2.View"
@@ -26,7 +27,7 @@
   <browser:page
     name="talklistview"
     for="*"
-    layer="*"
+    layer="..interfaces.IPloneconfSiteLayer"
     class=".views.TalkListView"
     template="templates/talklistview.pt"
     permission="zope2.View"

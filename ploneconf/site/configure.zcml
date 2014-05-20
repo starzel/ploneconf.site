@@ -31,6 +31,13 @@
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
 
+  <!-- Register the import step -->
+  <genericsetup:importStep
+      name="ploneconf.site"
+      title="ploneconf.site special import handlers"
+      description=""
+      handler="ploneconf.site.setuphandlers.setupVarious"
+      />
   <!-- -*- extra stuff goes here -*- -->
 
 </configure>
