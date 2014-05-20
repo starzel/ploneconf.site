@@ -33,4 +33,13 @@
     permission="zope2.View"
     />
 
+  <browser:page
+    name="sponsorview"
+    for="ploneconf.site.content.sponsor.ISponsor"
+    layer="..interfaces.IPloneconfSiteLayer"
+    class=".views.SponsorView"
+    template="templates/sponsorview.pt"
+    permission="zope2.View"
+    />
+
 </configure>

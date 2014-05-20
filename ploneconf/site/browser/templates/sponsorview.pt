@@ -1,0 +1,37 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="ploneconf.site">
+<body>
+  <metal:content-core fill-slot="content-core">
+    <h3 tal:content="structure view/w/level/render">
+      Level
+    </h3>
+
+    <div tal:content="structure view/w/text/render">
+      Text
+    </div>
+
+    <div class="newsImageContainer">
+      <a tal:attributes="href context/url">
+        <img tal:condition="python:getattr(context, 'logo', None)"
+             tal:attributes="src string:${context/absolute_url}/@@images/logo/preview" />
+      </a>
+    </div>
+
+    <div>
+      <a tal:attributes="href context/url">
+        Website
+      </a>
+
+      <img tal:condition="python:getattr(context, 'advertisment', None)"
+           tal:attributes="src string:${context/absolute_url}/@@images/advertisment/preview" />
+
+      <div tal:condition="python: 'notes' in view.w"
+           tal:content="structure view/w/notes/render">
+        Notes
+      </div>
+
+    </div>
+  </metal:content-core>
+</body>
+</html>
