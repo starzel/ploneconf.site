@@ -36,8 +36,3 @@ class TalkListView(BrowserView):
                 'uuid': brain.UID,
                 })
         return results
-
-
-class SponsorView(DefaultView):
-    """ The default view for sponsors
-    """
