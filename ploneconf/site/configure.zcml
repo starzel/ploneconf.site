@@ -25,12 +25,21 @@
   <!-- Register an extension profile to make the product installable
        in Plone -->
   <genericsetup:registerProfile
-      name="default"
-      title="PloneConf Site"
-      directory="profiles/default"
-      description="Extension profile for PloneConf Site"
-      provides="Products.GenericSetup.interfaces.EXTENSION"
-      />
+    name="default"
+    title="PloneConf Site"
+    directory="profiles/default"
+    description="Extension profile for PloneConf Site"
+    provides="Products.GenericSetup.interfaces.EXTENSION"
+    />
+
+  <!-- Register the import step -->
+  <genericsetup:importStep
+    name="ploneconf.site"
+    title="ploneconf.site special import handlers"
+    description=""
+    handler="ploneconf.site.setuphandlers.setupVarious">
+    <depends name="types"/>
+  </genericsetup:importStep>
 
   <!-- -*- extra stuff goes here -*- -->
 
