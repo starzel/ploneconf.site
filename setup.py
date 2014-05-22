@@ -29,6 +29,7 @@ setup(name='ploneconf.site',
           'plone.app.dexterity [relations]',
           'plone.app.relationfield',
           'plone.namedfile [blobs]',
+          'starzel.votable_behavior',
           # -*- Extra requirements: -*-
       ],
       entry_points="""
