@@ -2,6 +2,7 @@
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
 from plone.dexterity.browser.view import DefaultView
+from plone.app.event.dx.behaviors import IEventBasic
 
 
 class DemoView(BrowserView):
@@ -12,6 +13,10 @@ class DemoView(BrowserView):
 class TalkView(DefaultView):
     """ The default view for talks
     """
+
+    def talk_date(self):
+        wrapped = IEventBasic(self.context)
+        return ''
 
 
 class TalkListView(BrowserView):

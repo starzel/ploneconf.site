@@ -23,6 +23,8 @@
  <property name="behaviors">
   <element value="plone.app.dexterity.behaviors.metadata.IDublinCore"/>
   <element value="plone.app.content.interfaces.INameFromTitle"/>
+  <element value="ploneconf.site.behavior.social.ISocial"/>
+  <element value="ploneconf.site.interfaces.ITalk"/>
  </property>
  <property name="schema"></property>
  <property
