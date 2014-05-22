@@ -1,13 +1,13 @@
 # -*- coding: UTF-8 -*-
-from Products.CMFCore.utils import getToolByName
 from collections import OrderedDict
+from plone.api.portal import get_tool
+from plone.api.content import get_view
 from plone.app.layout.viewlets.common import ViewletBase
 from plone.memoize import ram
-from ploneconf.site.content.sponsor import LevelVocabulary
 from ploneconf.site.behavior.social import ISocial
+from ploneconf.site.content.sponsor import LevelVocabulary
 from random import shuffle
 from time import time
-from zope.component import getMultiAdapter
 
 
 class SocialViewlet(ViewletBase):
@@ -21,12 +21,12 @@ class SponsorsViewlet(ViewletBase):
 
     @ram.cache(lambda *args: time() // (60 * 60))
     def _sponsors(self):
-        catalog = getToolByName(self.context, 'portal_catalog')
+        catalog = get_tool('portal_catalog')
         brains = catalog(portal_type='sponsor')
         results = []
         for brain in brains:
             obj = brain.getObject()
-            scales = getMultiAdapter((obj, self.request), name='images')
+            scales = get_view(name='images', context=obj, request=self.request)
             scale = scales.scale('logo', width=200, height=80, direction='down')
             tag = scale.tag() if scale else ''
             if not tag:
@@ -49,7 +49,7 @@ class SponsorsViewlet(ViewletBase):
         levels = [i.value for i in LevelVocabulary]
         for level in levels:
             level_sponsors = []
-            for sponsor in self._sponsors():
+            for sponsor in sponsors:
                 if level == sponsor['level']:
                     level_sponsors.append(sponsor)
             if not level_sponsors:
