@@ -1,4 +1,5 @@
-#coding=utf-8
+# -*- coding: UTF-8 -*-
+
 from plone.api.content import transition
 from plone.api.content import get_state
 from starzel.votable_behavior.interfaces import IVoting
