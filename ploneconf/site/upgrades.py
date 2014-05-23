@@ -1,8 +1,10 @@
 # -*- coding: UTF-8 -*-
 from plone import api
-from datetime import datetime, timedelta
+
+import datetime
 import logging
 import pytz
+
 
 default_profile = 'profile-ploneconf.site:default'
 
@@ -39,13 +41,15 @@ def turn_talks_to_events(self):
     bug in plone.app.event 1.1.1
     """
     self.runImportStepFromProfile(default_profile, 'typeinfo')
+    tz = pytz.timezone("Europe/London")
+    now = tz.localize(datetime.datetime.now())
+    date = now + datetime.timedelta(days=30)
+    date = date.replace(minute=0, second=0, microsecond=0)
+
     catalog = api.portal.get_tool('portal_catalog')
     brains = catalog(portal_type='talk')
-    tz = pytz.timezone("Europe/London")
-    dummy_date = tz.localize(datetime.now()) + timedelta(days=30)
-    dummy_date = dummy_date.replace(minute=0, second=0, microsecond=0)
     for brain in brains:
         obj = brain.getObject()
         if not getattr(obj, 'start', False):
-            obj.start = obj.end = dummy_date
+            obj.start = obj.end = date
             obj.timezone = "Europe/London"
