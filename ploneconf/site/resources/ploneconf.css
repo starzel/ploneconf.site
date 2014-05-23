@@ -38,11 +38,15 @@
 
 .sponsor {
     float: left;
-    margin: 0 1em 1em 0em;
+    margin: 0 1em 1em 0;
 }
 
 .sponsor:hover {
     box-shadow: 0 0 8px #000000;
     -moz-box-shadow: 0 0 8px #000000;
     -webkit-box-shadow: 0 0 8px #000000;
+}
+
+.template-talkview .timezone {
+    display: none;
 }

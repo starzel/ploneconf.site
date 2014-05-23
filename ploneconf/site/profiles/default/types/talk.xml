@@ -25,6 +25,7 @@
   <element value="plone.app.content.interfaces.INameFromTitle"/>
   <element value="ploneconf.site.behavior.social.ISocial"/>
   <element value="ploneconf.site.interfaces.ITalk"/>
+  <element value="plone.app.event.dx.behaviors.IEventBasic"/>
  </property>
  <property name="schema"></property>
  <property

@@ -4,6 +4,8 @@
 <body>
     <metal:content-core fill-slot="content-core" tal:define="widgets view/w">
 
+        <tal:eventsummary replace="structure context/@@event_summary"/>
+
         <p>
             <span tal:content="context/type_of_talk">
                 Talk
@@ -13,10 +15,6 @@
                 Audience
             </span>
         </p>
-
-        <p tal:replace="structure python:widgets['IEventBasic.start'].render() if 'IEventBasic.start' in widgets else ''" />
-        -
-        <p tal:replace="structure python:widgets['IEventBasic.end'].render() if 'IEventBasic.end' in widgets else ''" />
 
         <div tal:content="structure widgets/details/render">
             Details

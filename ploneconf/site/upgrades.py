@@ -1,6 +1,8 @@
 # -*- coding: UTF-8 -*-
 from plone import api
+from datetime import datetime, timedelta
 import logging
+import pytz
 
 default_profile = 'profile-ploneconf.site:default'
 
@@ -30,3 +32,20 @@ def upgrade_site(self):
             source=obj,
             target=talks,
             safe_id=True)
+
+
+def turn_talks_to_events(self):
+    """Set a start- and end-date for old events to work around a
+    bug in plone.app.event 1.1.1
+    """
+    self.runImportStepFromProfile(default_profile, 'typeinfo')
+    catalog = api.portal.get_tool('portal_catalog')
+    brains = catalog(portal_type='talk')
+    tz = pytz.timezone("Europe/London")
+    dummy_date = tz.localize(datetime.now()) + timedelta(days=30)
+    dummy_date = dummy_date.replace(minute=0, second=0, microsecond=0)
+    for brain in brains:
+        obj = brain.getObject()
+        if not getattr(obj, 'start', False):
+            obj.start = obj.end = dummy_date
+            obj.timezone = "Europe/London"
